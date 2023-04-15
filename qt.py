@@ -8,7 +8,7 @@ class ScriptRunner(QThread):
     log_signal = pyqtSignal(str)
 
     def run(self):
-        with subprocess.Popen(['python', 'main_video.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True) as process:
+        with subprocess.Popen(['python','-Xfrozen_modules=off', 'main_video.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True) as process:
             while True:
                 output = process.stdout.readline()
                 error = process.stderr.readline()

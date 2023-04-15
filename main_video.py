@@ -35,7 +35,7 @@ def draw_frame_on_cropped_img(cropped_img: cv2.imread, text: str, ph_conf: float
     cv2.rectangle(framed_cropped_img, (0, 0), (w, h), color, thickness)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    font_color = (0, 0, 255)  # Красный цвет
+    font_color = (0, 0, 255)
     font_thickness = 2
 
     max_text_width = int(w * 0.9)
@@ -65,7 +65,7 @@ def get_last_created_file_in_images_full_photo(directory):
     return paths[-1] if paths else None
 
 def main():
-    youtube_url = 'https://www.youtube.com/watch?v=h2MfDmyBFt8'
+    youtube_url = '*******'
     save_dir_full_video = 'videos/youtube'
     video_path = "videos/my_video.mp4"
 
@@ -75,7 +75,6 @@ def main():
 
     # model = YOLO("yolov8n-face.pt") 
     model = YOLO("yolov8_test/model_test_main_part2/weights/best.pt") 
-
 
     save_dir_full_photo = "images_full_photo"
     save_dir_only_face = "images_only_face"
@@ -119,18 +118,18 @@ def main():
                     class_id = box.cls
                     class_mapping = {0: "APro", 1:"Cap", 2:"Face"}
 
-                    tensor_string_id = str(class_id) # Извлекаем название объекта
+                    tensor_string_id = str(class_id)
                     clean_string_id = tensor_string_id.replace("tensor(", "").replace(")", "")
                     parts_id = clean_string_id.split(',')
                     number_id = float(parts_id[0].strip("[]"))
                     int_number_id = int(number_id)
                     class_name = class_mapping[int_number_id]
 
-                    confidence_conf = box.conf  # Извлекаем вероятность распознавания объекта (confidence)
+                    confidence_conf = box.conf
                     tensor_string_conf = str(confidence_conf)
                     clean_string_conf = tensor_string_conf.replace("tensor(", "").replace(")", "").replace("device='mps:0'", "")
                     number_string_conf = clean_string_conf.strip().strip("[]").strip(",").rstrip("]")
-                    conf_hash = hashlib.sha1(number_string_conf.encode('utf-8')).hexdigest()[:8]  # Generate hash value from confidence value
+                    conf_hash = hashlib.sha1(number_string_conf.encode('utf-8')).hexdigest()[:8]
 
                     x1, y1, x2, y2 = map(int, xyxy[0])
                     cropped_img = img[y1-35:y2+10, x1-10:x2+10]
