@@ -4,3 +4,5 @@ images_only_face
 __pycache__
 venvYolo
 youtube
+.DS_Store
+/*.DS_Store
