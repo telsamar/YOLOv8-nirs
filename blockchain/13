@@ -1,0 +1,14 @@
+{
+    "name_of_photo": "op_9_Face_0.8543_2be01552.jpg",
+    "filetype": "JPEG image",
+    "hash_photo": "25e5d3e54a2cc3dc5c748a29f63523ee5af85c8b61cab0b92cdbbf5ad3fc7ac3",
+    "size in bytes": 42822,
+    "resolution": "288x455",
+    "created": "2023-04-16 12:16:08",
+    "object on photo": "Face",
+    "prev_block": {
+        "hash": "3eb2da2dcd2998b9eba473f0557e299d63b873cfdb2cae7c34f7a18076742814",
+        "filename": "12",
+        "size in bytes": 465
+    }
+}

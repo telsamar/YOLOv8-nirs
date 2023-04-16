@@ -1,0 +1,14 @@
+{
+    "name_of_photo": "op_7_Cap_0.945_b864c0ff.jpg",
+    "filetype": "JPEG image",
+    "hash_photo": "bb15513708bed865050194e807185c93b4979748caa60cf421bfe5de0b61b1d6",
+    "size in bytes": 37920,
+    "resolution": "348x313",
+    "created": "2023-04-16 12:16:06",
+    "object on photo": "Cap",
+    "prev_block": {
+        "hash": "a47b4c6f5774921de0d37fa9a3a63ca36dc6373ac1d0182964d1de71b9162c5f",
+        "filename": "8",
+        "size in bytes": 462
+    }
+}
