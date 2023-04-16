@@ -42,7 +42,7 @@ def check_integrity():
 
 def write_block(photo_name, class_name):
     """Create and write a block with the given photo_name and class_name."""
-    blocks_count = len(os.listdir(BLOCKCHAIN_DIR)) - 1
+    blocks_count = len(os.listdir(BLOCKCHAIN_DIR))
     prev_block = str(blocks_count)
     
     basename, extension = os.path.splitext(photo_name)
