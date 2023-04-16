@@ -8,7 +8,7 @@ class ScriptRunner(QThread):
     log_signal = pyqtSignal(str)
 
     def run(self):
-        with subprocess.Popen(['python','-Xfrozen_modules=off', 'main_video.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True) as process:
+        with subprocess.Popen([sys.executable,'-Xfrozen_modules=off', 'main_video.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True) as process:
             while True:
                 output = process.stdout.readline()
                 error = process.stderr.readline()
@@ -27,13 +27,13 @@ class MyWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        button = QPushButton("Запустить main_video.py", self)
-        button.setGeometry(10, 10, 200, 50)
-        button.clicked.connect(self.run_main)
+        self.button = QPushButton("Запустить main_video.py", self)
+        self.button.setGeometry(10, 10, 200, 50)
+        self.button.clicked.connect(self.run_main)
 
-        button_integrity = QPushButton("Проверить целостность", self)
-        button_integrity.setGeometry(10, 70, 200, 50)
-        button_integrity.clicked.connect(self.check_integrity) 
+        self.button_integrity = QPushButton("Проверить целостность", self)
+        self.button_integrity.setGeometry(10, 70, 200, 50)
+        self.button_integrity.clicked.connect(self.check_integrity) 
 
         self.textEdit = QTextEdit(self)
         self.textEdit.setReadOnly(True)
@@ -46,9 +46,13 @@ class MyWindow(QMainWindow):
         self.setWindowTitle('Запуск main_video.py')
 
     def run_main(self):
+        self.button.setEnabled(False)
+        self.button_integrity.setEnabled(False)
         self.textEdit.clear()
         self.script_runner = ScriptRunner()
         self.script_runner.log_signal.connect(self.write)
+        self.script_runner.finished.connect(lambda: self.button.setEnabled(True))
+        self.script_runner.finished.connect(lambda: self.button_integrity.setEnabled(True))
         self.script_runner.start()
 
     def check_integrity(self):

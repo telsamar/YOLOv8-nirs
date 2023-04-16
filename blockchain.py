@@ -9,12 +9,14 @@ BLOCKCHAIN_DIR = 'blockchain/'
 PHOTO_ITOG_DIR = 'images_only_face/'
 
 def get_hash(prev_block):
+    """Calculate the hash of the previous block."""
     prev_block_path = os.path.join(BLOCKCHAIN_DIR, prev_block)
     with open(prev_block_path, 'rb') as f:
         content = f.read()
     return hashlib.sha256(content).hexdigest()
 
 def check_integrity():
+    """Check the integrity of the blockchain."""
     files = sorted([f for f in os.listdir(BLOCKCHAIN_DIR) if not f.startswith('.')], key=lambda f: int(os.path.splitext(f)[0]))
 
     results = []
@@ -39,6 +41,7 @@ def check_integrity():
     return results
 
 def write_block(photo_name, class_name):
+    """Create and write a block with the given photo_name and class_name."""
     blocks_count = len(os.listdir(BLOCKCHAIN_DIR)) - 1
     prev_block = str(blocks_count)
     
@@ -77,12 +80,14 @@ def write_block(photo_name, class_name):
         f.write('\n')
 
 def get_hash_photo(photo_name):
+    """Calculate the hash of the given photo."""
     photo_path = os.path.join(PHOTO_ITOG_DIR, photo_name)
     with open(photo_path, 'rb') as f:
         content_photo = f.read()
     return hashlib.sha256(content_photo).hexdigest()
 
 def main():
+    """Main function to create the blockchain and write it to a file."""
     Path(BLOCKCHAIN_DIR).mkdir(parents=True, exist_ok=True)
     Path(PHOTO_ITOG_DIR).mkdir(parents=True, exist_ok=True)
 
