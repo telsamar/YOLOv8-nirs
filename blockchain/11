@@ -1,14 +1,14 @@
 {
-    "name_of_photo": "op_8_Cap_0.8828_6d9b6fa0.jpg",
+    "name_of_photo": "op_8_Face_0.7577_2566bf64.jpg",
     "filetype": "JPEG image",
-    "hash_photo": "4aa64b99e9568b68c44438e343fec59470eaa6baaa46397fbaeb187a88e4edc0",
-    "size in bytes": 37421,
-    "resolution": "396x263",
-    "created": "2023-04-16 12:16:07",
-    "object on photo": "Cap",
+    "hash_photo": "6ea706c7d143a0361347d7590dd55529c543a5e165fbea7f58bc76de48b65eaf",
+    "size in bytes": 35354,
+    "resolution": "267x396",
+    "created": "2023-05-04 22:56:53",
+    "object on photo": "Face",
     "prev_block": {
-        "hash": "f76266105b8e7ac9ed887f93c9aae8014c8c2cddaf492aa4d4bad7b0dece4bc6",
+        "hash": "716350dae2c623c6eff300db93642c42003566211390004e20fff44bb27c3175",
         "filename": "10",
-        "size in bytes": 464
+        "size in bytes": 461
     }
 }

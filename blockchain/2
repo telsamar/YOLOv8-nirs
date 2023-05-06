@@ -1,11 +1,11 @@
 {
-    "name_of_photo": "op_1_Cap_0.3953_e6a58f9a.jpg",
+    "name_of_photo": "op_2_Face_0.9175_0ba0bbc3.jpg",
     "filetype": "JPEG image",
-    "hash_photo": "7c2ffd060331c6c3bdbd2da01c5cba73115faf511f20d5e060e9e4bed32870c1",
-    "size in bytes": 81167,
-    "resolution": "863x658",
-    "created": "2023-04-16 12:15:59",
-    "object on photo": "Cap",
+    "hash_photo": "c93928ac57a1401bf57b61dca9c2e381fa64279d7f47bd7f9b76c59558d11953",
+    "size in bytes": 57287,
+    "resolution": "354x547",
+    "created": "2023-05-04 22:06:29",
+    "object on photo": "Face",
     "prev_block": {
         "hash": "11601d365c5fd0cf57d36151705967b50c07099ebaa78288f35ec55e3134dad6",
         "filename": "1",

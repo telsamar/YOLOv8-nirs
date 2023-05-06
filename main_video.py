@@ -14,7 +14,8 @@ def download_youtube_video(youtube_url: str, save_dir_full_video: str = 'videos/
         os.makedirs(save_dir_full_video)
 
     yt = pytube.YouTube(youtube_url)
-    stream = yt.streams.filter(res="1080p", file_extension="mp4").first()
+    # stream = yt.streams.filter(res="1080p", file_extension="mp4").first()
+    stream = yt.streams.get_highest_resolution()
     file_path = os.path.join(save_dir_full_video, stream.default_filename)
     stream.download(output_path=save_dir_full_video)
 
@@ -65,9 +66,9 @@ def get_last_created_file_in_images_full_photo(directory):
     return paths[-1] if paths else None
 
 def main():
-    youtube_url = '*******'
+    youtube_url = 'https://youtu.be/dylyj3xObJo'
     save_dir_full_video = 'videos/youtube'
-    video_path = "videos/my_video.mp4"
+    video_path = "youtube/my_video.mp4"
 
     # cap = get_file_capture(video_path)
     # cap = download_youtube_video(youtube_url, save_dir_full_video)
