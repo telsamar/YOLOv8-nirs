@@ -40,7 +40,7 @@ def check_integrity():
         results.append({'block': prev_filename, 'result': res})
     return results
 
-def write_block(photo_name, class_name):
+def write_block(photo_name, class_name, age, genderM, genderW, sorted_emotions_dict, sorted_races):
     """Create and write a block with the given photo_name and class_name."""
     blocks_count = len(os.listdir(BLOCKCHAIN_DIR))
     prev_block = str(blocks_count)
@@ -69,7 +69,14 @@ def write_block(photo_name, class_name):
             "filename": prev_block,
             "size in bytes": os.path.getsize("blockchain/" + prev_block)         
         },
-        # "gender": gender
+        "age": age,
+        "gender": {
+            "Gender (Male)": f"{genderM:.2f}%",
+            "Gender (Female)": f"{genderW:.2f}%",
+        },
+        "emotions": {emotions_dict: f"{probability:.2f}%" for emotions_dict, probability in sorted_emotions_dict},
+        "races": {race: f"{probability:.2f}%" for race, probability in sorted_races}
+
     }
 
     print("block realised")

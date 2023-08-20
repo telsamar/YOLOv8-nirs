@@ -35,22 +35,18 @@ def main():
             os.mkdir(save_dir_only_face)
         else:
             clear_directory(save_dir_only_face)
-        count_op = 0
-        count_fp = 0
+        count_op = 1
+        count_fp = 1
 
-        count_op += 1
-        count_fp += 1
         last_frame_time = 0
         save_interval = 1
-
+        
         while True: 
             success, img = cap.read() 
-
             res = model(img, conf=0.6, device='mps')
             if success:
                 current_time = time.time()
                 boxes = res[0].boxes
-                cropped_imgs = []
                 res_plotted = res[0].plot()
                 cv2.namedWindow("Yolov8 big test", cv2.WINDOW_NORMAL)
                 cv2.resizeWindow("Yolov8 big test", 640, 360)
@@ -78,15 +74,26 @@ def main():
 
                         x1, y1, x2, y2 = map(int, xyxy[0])
                         cropped_img = img[y1-35:y2+10, x1-10:x2+10]
-                        cropped_imgs.append(cropped_img)
 
                         if cropped_img.size > 0:
-                            framed_cropped_img = draw_frame_on_cropped_img(cropped_img, class_name, float(number_string_conf)) 
+                            cv2.imwrite(f"{save_dir_only_face}/op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", cropped_img)
+                            if int_number_id==2:
+                                result = DeepFace.analyze(img_path=cropped_img, actions=['age', 'gender', 'emotion', 'race'], enforce_detection=False)
+                                age = result[0]['age']
 
-                            cv2.imwrite(f"{save_dir_only_face}/op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", framed_cropped_img)
-                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", class_name)
-                    
-                    cv2.imwrite(f"{save_dir_full_photo}/fp_{count_fp}.jpg", res_plotted)
+                                gender_probabilities = result[0]['gender']
+                                genderM = gender_probabilities['Man']
+                                genderW = gender_probabilities['Woman']
+
+                                emotions_dict = result[0]['emotion']
+                                sorted_emotions_dict = sorted(emotions_dict.items(), key=lambda x: x[1], reverse=True)
+
+                                races = result[0]['race']
+                                sorted_races = sorted(races.items(), key=lambda x: x[1], reverse=True)
+
+                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", 
+                                class_name, age, genderM, genderW, sorted_emotions_dict, sorted_races)
+
                     count_op += 1
                     count_fp += 1
 
