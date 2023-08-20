@@ -69,13 +69,6 @@ def clear_directory(directory: str):
         if os.path.isfile(file_path):
             os.remove(file_path)
 
-"""Этот метод будет дальше анализировать изображение с человеком."""
-def more_people(cropped_img):
-    image_rgb = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2RGB)
-    result = DeepFace.analyze(img_path=image_rgb, actions=['gender'], enforce_detection=False)
-    gender = result[0]["dominant_gender"]
-    return gender
-
 def main():
     video_path = "videos/1.mp4"
 
@@ -147,14 +140,9 @@ def main():
 
                         if cropped_img.size > 0:
                             framed_cropped_img = draw_frame_on_cropped_img(cropped_img, class_name, float(number_string_conf)) 
-                            
-                            if class_name == "Face":
-                                gender = more_people(cropped_img)
-                            else:
-                                pass
 
                             cv2.imwrite(f"{save_dir_only_face}/op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", framed_cropped_img)
-                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", class_name, gender)
+                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", class_name)
                     
                     cv2.imwrite(f"{save_dir_full_photo}/fp_{count_fp}.jpg", res_plotted)
                     count_op += 1
