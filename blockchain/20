@@ -1,14 +1,15 @@
 {
-    "name_of_photo": "op_4_Face_0.922_240f33ff.jpg",
+    "name_of_photo": "op_2_Face_0.9396_f2f1b447.jpg",
     "filetype": "JPEG image",
-    "hash_photo": "0ef15e1745d8ba3ffd567023a5d2261b6b4e9baed966efe9863408513bfb2935",
-    "size in bytes": 44699,
-    "resolution": "321x524",
-    "created": "2023-08-20 18:44:27",
+    "hash_photo": "a7926bb3a8ba92d3e82a061037ac469176aa1f4bb1bdb1f7631d1cdc2e20e838",
+    "size in bytes": 54108,
+    "resolution": "346x540",
+    "created": "2023-08-20 22:03:58",
     "object on photo": "Face",
     "prev_block": {
-        "hash": "ffc0d6cef0fa17ab911a2a7b0b528ceb20252c1e6126a74482d35dff860d6316",
+        "hash": "f62f47fd50a1631440c34ea0d4028d702999a355388f823de21ebbe3132d5507",
         "filename": "19",
-        "size in bytes": 465
-    }
+        "size in bytes": 487
+    },
+    "gender": "Man"
 }

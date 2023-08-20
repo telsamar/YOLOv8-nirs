@@ -20,6 +20,7 @@ class ScriptRunner(QThread):
                     output = process.stdout.readline()
                     error = process.stderr.readline()
 
+            
                     # Отправляем вывод из stdout и stderr в виджет textEdit через сигнал log_signal
                     if output:
                         self.log_signal.emit(f"{output.strip()}\n")

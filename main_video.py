@@ -150,12 +150,11 @@ def main():
                             
                             if class_name == "Face":
                                 gender = more_people(cropped_img)
-                                print(f"Detected gender: {gender}")
                             else:
                                 pass
 
                             cv2.imwrite(f"{save_dir_only_face}/op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", framed_cropped_img)
-                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", class_name)
+                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", class_name, gender)
                     
                     cv2.imwrite(f"{save_dir_full_photo}/fp_{count_fp}.jpg", res_plotted)
                     count_op += 1

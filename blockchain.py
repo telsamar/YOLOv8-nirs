@@ -40,7 +40,7 @@ def check_integrity():
         results.append({'block': prev_filename, 'result': res})
     return results
 
-def write_block(photo_name, class_name):
+def write_block(photo_name, class_name, gender):
     """Create and write a block with the given photo_name and class_name."""
     blocks_count = len(os.listdir(BLOCKCHAIN_DIR))
     prev_block = str(blocks_count)
@@ -68,7 +68,8 @@ def write_block(photo_name, class_name):
             "hash": get_hash(prev_block),
             "filename": prev_block,
             "size in bytes": os.path.getsize("blockchain/" + prev_block)         
-        }   
+        },
+        "gender": gender
     }
 
     print("block realised")
