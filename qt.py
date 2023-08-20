@@ -14,6 +14,9 @@ class ScriptRunner(QThread):
             with subprocess.Popen([sys.executable, '-Xfrozen_modules=off', 'main_video.py'],
                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True) as process:
                 while True:
+                    if process.poll() is not None:
+                        break
+                    
                     output = process.stdout.readline()
                     error = process.stderr.readline()
 
