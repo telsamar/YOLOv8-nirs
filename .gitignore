@@ -8,3 +8,4 @@ youtube
 /*.DS_Store
 .gitattributes
 test.py
+shape_predictor_68_face_landmarks.dat
