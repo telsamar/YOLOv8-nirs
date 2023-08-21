@@ -1,15 +1,36 @@
 {
-    "name_of_photo": "op_12_Face_0.9509_38632afa.jpg",
+    "name_of_photo": "op_13_Face_0.9281_8144e7f1.jpg",
     "filetype": "JPEG image",
-    "hash_photo": "d3c21c8b363116e066947aff68c9323627c1239d2e0a463c88fc8b428c9034f4",
-    "size in bytes": 50934,
-    "resolution": "332x524",
-    "created": "2023-08-20 22:03:34",
+    "hash_photo": "cbd706b2c04c8299fab67cd2dee93dde9fac3af79689143603f7e3ee63498694",
+    "size in bytes": 40209,
+    "resolution": "338x514",
+    "created": "2023-08-21 07:19:28",
     "object on photo": "Face",
     "prev_block": {
-        "hash": "fbe47211e74b90de941007f3c38124807f9e5e857477f52f4592a096a1f271d4",
+        "hash": "d31da890b3ed316a451d485b87188dfb778b257469dd9285e58c112825128b3b",
         "filename": "12",
-        "size in bytes": 487
+        "size in bytes": 987
     },
-    "gender": "Man"
+    "age": 34,
+    "gender": {
+        "Gender (Male)": "97.45%",
+        "Gender (Female)": "2.55%"
+    },
+    "emotions": {
+        "sad": "99.24%",
+        "neutral": "0.50%",
+        "fear": "0.24%",
+        "angry": "0.01%",
+        "happy": "0.00%",
+        "surprise": "0.00%",
+        "disgust": "0.00%"
+    },
+    "races": {
+        "latino hispanic": "28.30%",
+        "white": "26.44%",
+        "middle eastern": "20.32%",
+        "asian": "11.95%",
+        "indian": "9.09%",
+        "black": "3.90%"
+    }
 }
