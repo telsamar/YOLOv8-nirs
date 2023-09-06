@@ -1,0 +1,36 @@
+{
+    "name_of_photo": "op_15_Face_0.9439_15a909ca_2023-09-06_10-28-20-809513.jpg",
+    "filetype": "JPEG image",
+    "hash_photo": "70c6f0373c84079eb7c182750692e54c9c6e84c22888d76c31596b95aeead494",
+    "size in bytes": 84508,
+    "resolution": "467x679",
+    "created": "2023-09-06 10:28:20",
+    "object on photo": "Face",
+    "prev_block": {
+        "hash": "bf6355dd7252f78f48cd0edf90fbf47f934c9a2e2ebf784de3f96c0e94288128",
+        "filename": "68",
+        "size in bytes": 1013
+    },
+    "age": 27,
+    "gender": {
+        "Gender (Male)": "99.81%",
+        "Gender (Female)": "0.19%"
+    },
+    "emotions": {
+        "sad": "98.21%",
+        "neutral": "1.11%",
+        "angry": "0.65%",
+        "fear": "0.02%",
+        "happy": "0.00%",
+        "disgust": "0.00%",
+        "surprise": "0.00%"
+    },
+    "races": {
+        "white": "71.33%",
+        "latino hispanic": "16.94%",
+        "asian": "8.31%",
+        "middle eastern": "3.32%",
+        "indian": "0.10%",
+        "black": "0.00%"
+    }
+}

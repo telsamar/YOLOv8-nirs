@@ -31,6 +31,24 @@ def extract_landmarks(image_path):
         symmetry_score = evaluate_symmetry(landmarks_points)
         tilt_angle = head_tilt_angle(landmarks_points)
 
+        # Определение цвета кожи
+        skin_mask = cv2.convexHull(np.array(landmarks_points))
+        skin_color = cv2.mean(image, mask=cv2.drawContours(np.zeros_like(gray), [skin_mask], -1, (255), -1).astype(np.uint8))
+        skin_color = skin_color[::-1]  # Преобразование из BGR в RGB
+
+        # Определение цвета глаз и волос
+        eye_left = np.mean(image[landmarks.part(37).y:landmarks.part(40).y, landmarks.part(36).x:landmarks.part(39).x], axis=(0, 1))
+        eye_left = eye_left[::-1]
+        eye_right = np.mean(image[landmarks.part(44).y:landmarks.part(47).y, landmarks.part(42).x:landmarks.part(45).x], axis=(0, 1))
+        eye_right = eye_right[::-1]
+        hair_top_left = np.mean(image[landmarks.part(18).y:landmarks.part(21).y, landmarks.part(17).x:landmarks.part(22).x], axis=(0, 1))
+        hair_top_left = hair_top_left[::-1]
+
+        print(f"Средний цвет кожи: {skin_color}")
+        print(f"Средний цвет левого глаза: {eye_left}")
+        print(f"Средний цвет правого глаза: {eye_right}")
+        print(f"Средний цвет волос: {hair_top_left}")
+
         print(f"Оценка симметрии лица: {symmetry_score}")
         print(f"Угол наклона головы: {tilt_angle} градусов")
         print(f"Расстояние между глазами: {inter_eye_distance}")
@@ -65,4 +83,4 @@ def head_tilt_angle(landmarks_points):
     return angle
 
 
-extract_landmarks("images_only_face/op_12_Face_0.9333_4fc552b9.jpg")
+extract_landmarks("images_only_face/op_8_Face_0.8218_bfef7e13_2023-09-06_11-11-11-708476.jpg")

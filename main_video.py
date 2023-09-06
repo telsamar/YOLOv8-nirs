@@ -11,6 +11,7 @@ import pytube
 from ultralytics import YOLO
 from blockchain import write_block
 from deepface import DeepFace
+from datetime import datetime
 
 def main():
     try:    
@@ -73,10 +74,22 @@ def main():
                         conf_hash = hashlib.sha1(number_string_conf.encode('utf-8')).hexdigest()[:8]
 
                         x1, y1, x2, y2 = map(int, xyxy[0])
-                        cropped_img = img[y1-35:y2+10, x1-10:x2+10]
+                        padding_y = 65  # Увеличение вертикального отступа
+                        padding_x = 50  # Увеличение горизонтального отступа
+
+                        height, width = img.shape[:2]
+
+                        y1_new = max(0, y1 - padding_y)
+                        y2_new = min(height, y2 + padding_y)
+
+                        x1_new = max(0, x1 - padding_x)
+                        x2_new = min(width, x2 + padding_x)
+
+                        cropped_img = img[y1_new:y2_new, x1_new:x2_new]
 
                         if cropped_img.size > 0:
-                            cv2.imwrite(f"{save_dir_only_face}/op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", cropped_img)
+                            current_time_spec = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")
+                            cv2.imwrite(f"{save_dir_only_face}/op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}_{current_time_spec}.jpg", cropped_img)
                             if int_number_id==2:
                                 result = DeepFace.analyze(img_path=cropped_img, actions=['age', 'gender', 'emotion', 'race'], enforce_detection=False)
                                 age = result[0]['age']
@@ -91,7 +104,7 @@ def main():
                                 races = result[0]['race']
                                 sorted_races = sorted(races.items(), key=lambda x: x[1], reverse=True)
 
-                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}.jpg", 
+                            write_block(f"op_{count_op}_{class_name}_{float(number_string_conf)}_{conf_hash}_{current_time_spec}.jpg", 
                                 class_name, age, genderM, genderW, sorted_emotions_dict, sorted_races)
 
                     count_op += 1
@@ -114,6 +127,9 @@ def main():
 """Захват видеопотока с камеры."""
 def get_camera_capture(camera_num: int = 0) -> cv2.VideoCapture:
     cap = cv2.VideoCapture(camera_num)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+    cap.set(cv2.CAP_PROP_FPS, 20)
     return cap
 
 """Захват видеопотока из файла."""
