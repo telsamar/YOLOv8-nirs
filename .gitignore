@@ -10,3 +10,4 @@ videos/*
 test.py
 yolov8l.pt
 yolov8n-face.pt
+yolov8n.pt
