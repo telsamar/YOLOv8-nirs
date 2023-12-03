@@ -2,12 +2,8 @@ images_full_photo
 images_only_face
 __pycache__
 venv
-.DS_Store
-/*.DS_Store
+*.DS_Store
 .gitattributes
-shape_predictor_68_face_landmarks.dat
 videos/*
 test.py
-yolov8l.pt
-yolov8n-face.pt
-yolov8n.pt
+yolov8l-face.pt
