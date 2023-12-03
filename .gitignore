@@ -1,7 +1,7 @@
 images_full_photo
 images_only_face
 __pycache__
-venvYolo
+venv
 .DS_Store
 /*.DS_Store
 .gitattributes

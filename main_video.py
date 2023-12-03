@@ -7,7 +7,6 @@ import time
 from typing import List
 import re
 import cv2
-import pytube
 from ultralytics import YOLO
 from datetime import datetime
 
