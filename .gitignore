@@ -1,11 +1,10 @@
-blockchain/*.txt
 images_full_photo
 images_only_face
 __pycache__
 venvYolo
-youtube
 .DS_Store
 /*.DS_Store
 .gitattributes
-test.py
 shape_predictor_68_face_landmarks.dat
+videos/*
+test.py
