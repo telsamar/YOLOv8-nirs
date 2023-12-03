@@ -1,9 +1,6 @@
-images_full_photo
-images_only_face
 __pycache__
 venv
 *.DS_Store
 .gitattributes
-videos/*
 test.py
-yolov8l-face.pt
+for_detect/*

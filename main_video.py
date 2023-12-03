@@ -1,4 +1,3 @@
-# https://github.com/ultralytics/ultralytics
 import hashlib
 import os
 os.environ['PYDEVD_DISABLE_FILE_VALIDATION'] = '1'
@@ -12,17 +11,16 @@ from datetime import datetime
 
 def main():
     try:    
-        video_path = "videos/Elon.mp4"
+        video_path = "for_detect/videos/Elon.mp4"
         cap = get_file_capture(video_path)
         # cap = get_camera_capture()
 
-        # Проверка на наличие файла модели
-        if not os.path.exists("yolov8_test/model_test_main_part2/weights/best.pt"):
+        if not os.path.exists("for_detect/yolov8l-face.pt"):
             raise FileNotFoundError("Файл модели не найден.")
-        model = YOLO("yolov8_test/model_test_main_part2/weights/best.pt") 
+        model = YOLO("for_detect/yolov8l-face.pt") 
         
-        save_dir_full_photo = "images_full_photo"
-        save_dir_only_face = "images_only_face"
+        save_dir_full_photo = "for_detect/images_full_photo"
+        save_dir_only_face = "for_detect/images_only_face"
 
         if not os.path.exists(save_dir_full_photo):
             os.mkdir(save_dir_full_photo)
@@ -54,7 +52,7 @@ def main():
                     for box in boxes:
                         xyxy = box.xyxy
                         class_id = box.cls
-                        class_mapping = {0: "APro", 1:"Cap", 2:"Face"}
+                        class_mapping = {0: "Face"}
 
                         tensor_string_id = str(class_id)
                         clean_string_id = tensor_string_id.replace("tensor(", "").replace(")", "")
@@ -70,8 +68,8 @@ def main():
                         conf_hash = hashlib.sha1(number_string_conf.encode('utf-8')).hexdigest()[:8]
 
                         x1, y1, x2, y2 = map(int, xyxy[0])
-                        padding_y = 65  # Увеличение вертикального отступа
-                        padding_x = 50  # Увеличение горизонтального отступа
+                        padding_y = 65
+                        padding_x = 50
 
                         height, width = img.shape[:2]
 
@@ -106,7 +104,6 @@ def main():
     except Exception as e:
         print(f"Произошла непредвиденная ошибка: {e}")
 
-"""Захват видеопотока с камеры."""
 def get_camera_capture(camera_num: int = 0) -> cv2.VideoCapture:
     cap = cv2.VideoCapture(camera_num)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
@@ -114,14 +111,12 @@ def get_camera_capture(camera_num: int = 0) -> cv2.VideoCapture:
     cap.set(cv2.CAP_PROP_FPS, 20)
     return cap
 
-"""Захват видеопотока из файла."""
 def get_file_capture(video_path: str) -> cv2.VideoCapture:
     if not os.path.exists(video_path):
         raise FileNotFoundError(f"Файл {video_path} не найден.")
     cap = cv2.VideoCapture(video_path)
     return cap
 
-"""Добавляет рамку и текст к обрезанному изображению."""
 def draw_frame_on_cropped_img(cropped_img: cv2.imread, text: str, ph_conf: float, thickness: int = 2, color: tuple = (0, 255, 0)) -> cv2.imread:
     framed_cropped_img = cropped_img.copy()
     h, w, _ = cropped_img.shape
