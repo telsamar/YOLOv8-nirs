@@ -3,4 +3,7 @@ venv
 *.DS_Store
 .gitattributes
 test.py
-for_detect/*
+for_detect/images_full_photo/*
+for_detect/images_only_face/*
+for_detect/videos/*
+for_detect/yolov8l-face.pt

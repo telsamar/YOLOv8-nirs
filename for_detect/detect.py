@@ -12,8 +12,8 @@ from datetime import datetime
 def main():
     try:    
         video_path = "for_detect/videos/Elon.mp4"
-        # cap = get_file_capture(video_path)
-        cap = get_camera_capture()
+        cap = get_file_capture(video_path)
+        # cap = get_camera_capture()
 
         if not os.path.exists("for_detect/yolov8l-face.pt"):
             raise FileNotFoundError("Файл модели не найден.")
@@ -31,6 +31,7 @@ def main():
             os.mkdir(save_dir_only_face)
         else:
             clear_directory(save_dir_only_face)
+            
         count_op = 1
         count_fp = 1
 
